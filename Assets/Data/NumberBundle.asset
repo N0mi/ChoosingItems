@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c7ff4d56784908a976cb86f41e470a, type: 3}
+  m_Name: NumberBundle
+  m_EditorClassIdentifier: 
+  cardData:
+  - _identifier: One
+    _sprite: {fileID: 1422184923334757970, guid: bb991ef9349d06646b0e2fc3e8f708ac, type: 3}
+  - _identifier: Two
+    _sprite: {fileID: 1808195818850983521, guid: bb991ef9349d06646b0e2fc3e8f708ac, type: 3}
+  - _identifier: Three
+    _sprite: {fileID: -7900951133411543555, guid: bb991ef9349d06646b0e2fc3e8f708ac, type: 3}
+  - _identifier: Four
+    _sprite: {fileID: 2267071060405275165, guid: bb991ef9349d06646b0e2fc3e8f708ac, type: 3}
