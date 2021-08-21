@@ -3,15 +3,17 @@ using AmayaSoft.TestTask.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace AmayaSoft.TestTask
 {
     public class Starter : MonoBehaviour
     {
-        [SerializeField] private CardBundleData cards;
+        [SerializeField] private BundlesKit bundlesKit;
         [Space]
         [SerializeField] private CellView cellPrefab;
-        [SerializeField] private Transform cellContainer;
+        [SerializeField] private GridLayoutGroup cellContainer;
+        [Space]
         [SerializeField] private TextMeshProUGUI textTask;
         
         private readonly LevelLoader _levelLoader = new LevelLoader();
@@ -33,7 +35,7 @@ namespace AmayaSoft.TestTask
 
         private void SetupLevel()
         {
-            var level = _levelLoader.GetLevel(cards);
+            var level = _levelLoader.GetLevel(bundlesKit.Bundles[1]);
             _levelStarter.StartLevel(level);
             //level.OnComplete.AddListener(SetupLevel);
         }

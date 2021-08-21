@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AmayaSoft.TestTask.Data
@@ -21,6 +22,8 @@ namespace AmayaSoft.TestTask.Data
     [CreateAssetMenu(fileName = "New CardBundleData", menuName = "Card Bundle Data")]
     public class CardBundleData : ScriptableObject
     {
-        public CardData[] cardData;
+        [SerializeField] private CardData[] _cardData;
+
+        public IReadOnlyList<CardData> CardData => _cardData;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c7ff4d56784908a976cb86f41e470a, type: 3}
   m_Name: LetterBundle
   m_EditorClassIdentifier: 
-  cardData:
+  _cardData:
   - _identifier: A
     _sprite: {fileID: 4963718625464178563, guid: ae946199b1123ec41892600e12991055, type: 3}
   - _identifier: B

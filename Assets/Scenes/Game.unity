@@ -562,9 +562,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5f50869d93ba648a85aaec033bf682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards: {fileID: 11400000, guid: 90b82e893cceee743ae57aec15e73288, type: 2}
+  bundlesKit: {fileID: 11400000, guid: e3af2bec158b05f41922a02e096b9965, type: 2}
   cellPrefab: {fileID: 6737458309001449461, guid: 54197353966c00e4680f17e83269a4b1, type: 3}
-  cellContainer: {fileID: 1120283945}
+  cellContainer: {fileID: 1120283946}
   textTask: {fileID: 657576348}
 --- !u!4 &1733202953
 Transform:

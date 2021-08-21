@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c7ff4d56784908a976cb86f41e470a, type: 3}
   m_Name: NumberBundle
   m_EditorClassIdentifier: 
-  cardData:
+  _cardData:
   - _identifier: 1
     _sprite: {fileID: 1422184923334757970, guid: bb991ef9349d06646b0e2fc3e8f708ac, type: 3}
   - _identifier: 2

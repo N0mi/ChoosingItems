@@ -1,19 +1,20 @@
 ﻿using AmayaSoft.TestTask.View;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AmayaSoft.TestTask
 {
     public class LevelStarter
     {
-        private readonly Transform _cellContainer;
+        private readonly GridLayoutGroup _cellContainer;
         private readonly CellView _cell;
         private readonly TextMeshProUGUI _taskText;
 
         private GridView _gridView;
         private Level _currentLvl;
 
-        public LevelStarter(Transform cellContainer, CellView cell, TextMeshProUGUI taskText)
+        public LevelStarter(GridLayoutGroup cellContainer, CellView cell, TextMeshProUGUI taskText)
         {
             _cellContainer = cellContainer;
             _cell = cell;

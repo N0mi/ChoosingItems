@@ -8,13 +8,13 @@ namespace AmayaSoft.TestTask.View
     {
         private List<CellView> _cells = new List<CellView>();
         
-        public GridView(Grid grid, CellView cell, Transform cellContainer)
+        public GridView(Grid grid, CellView cell, GridLayoutGroup cellContainer)
         {
-            cellContainer.GetComponent<GridLayoutGroup>().constraintCount = grid.Column;
+            cellContainer.constraintCount = grid.Column;
             
             foreach (var card in grid.Items)
             {
-                var cellView = Object.Instantiate(cell, cellContainer);
+                var cellView = Object.Instantiate(cell, cellContainer.transform);
                 _cells.Add(cellView);
                 cellView.SetCard(card);
                 cellView.SetBackGroundColor(Color.gray);

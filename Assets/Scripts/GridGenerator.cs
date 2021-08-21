@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using AmayaSoft.TestTask.Data;
+using UnityEngine;
 using Utilites;
 
 namespace AmayaSoft.TestTask
@@ -20,9 +21,10 @@ namespace AmayaSoft.TestTask
         private CardData[] GenerateItems(int count)
         {
             var items = new CardData[count];
+            Debug.Log(items.Length);
             for (int i = 0; i < count; i++)
             {
-                items[i] = _currentCards.cardData.ToList().GetRandom();
+                items[i] = _currentCards.CardData.GetRandom();
             }
 
             return items;
