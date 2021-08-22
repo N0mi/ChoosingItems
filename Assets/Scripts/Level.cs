@@ -19,13 +19,12 @@ namespace AmayaSoft.TestTask
             _cardTask = task;
         }
 
-        public void CheckCard(CardData card)
+        public bool CheckCorrectCard(CardData card)
         {
-            if(card == _cardTask)
-                EndLevel();
+            return card == _cardTask;
         }
 
-        private void EndLevel()
+        public void EndLevel()
         {
             OnComplete.Invoke();
         }

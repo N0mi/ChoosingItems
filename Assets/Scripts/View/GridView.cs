@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AmayaSoft.TestTask.Data;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,22 +11,25 @@ namespace AmayaSoft.TestTask.View
 {
     public class GridView
     {
-        public readonly UnityEvent<CardData> onCardClick = new UnityEvent<CardData>();
+        public readonly UnityEvent<CardData> onCorrectCardClick = new UnityEvent<CardData>();
+        private readonly Level _level;
         private readonly Grid _grid;
         private readonly CellView _cellPrefab;
         private readonly GridLayoutGroup _cellContainer;
         private readonly List<CellView> _cells = new List<CellView>();
         private readonly List<Color> _BGcolors;
+        private Tweener _punch;
 
-        public GridView(Grid grid, CellView cell, GridLayoutGroup cellContainer, List<Color> bgColors)
+        public GridView(Level level, CellView cell, GridLayoutGroup cellContainer, List<Color> bgColors)
         {
-            _grid = grid;
+            _level = level;
+            _grid = _level.Grid;
             _cellPrefab = cell;
             _cellContainer = cellContainer;
-            _BGcolors = bgColors;
-            cellContainer.constraintCount = grid.Column;
+            _BGcolors = bgColors.ToList();
+            cellContainer.constraintCount = _grid.Column;
             
-            foreach (var card in grid.Items)
+            foreach (var card in _grid.Items)
             {
                 CreateCell(card);
             }
@@ -35,14 +40,31 @@ namespace AmayaSoft.TestTask.View
             var cellView = Object.Instantiate(_cellPrefab, _cellContainer.transform);
             _cells.Add(cellView);
             cellView.SetCard(card);
-            cellView.SetBackGroundColor(_BGcolors.GetRandom());
-            cellView.onClick.AddListener(CardClickHandler);
+            cellView.SetBackGroundColor(_BGcolors.GetRandomAndRemove());
+            cellView.onClick.AddListener(CellClick);
         }
 
-        private void CardClickHandler(CellView cell)
+        private void CellClick(CellView cell)
         {
-            onCardClick.Invoke(cell.Card);
+            if (_level.CheckCorrectCard(cell.Card))
+            {
+                cell.endAnim.AddListener(()=>onCorrectCardClick.Invoke(cell.Card));
+                cell.CorrectAnim();
+            }
+            else
+            {
+                cell.UncorrectAnim();;
+            }
         }
+
+        public void BounceActivateGrid()
+        {
+            foreach (var cell in _cells)
+            {
+                cell.transform.localScale = Vector3.zero;
+                cell.transform.DOScale(1, 0.5f).SetEase(Ease.OutBounce);
+            }
+        } 
 
         public void DestroyGrid()
         {

@@ -134,9 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8c7e59f74d6cf4a96b3b0ac0937468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  picture: {fileID: 7659003666493819370}
-  backGround: {fileID: 2570582774767889765}
-  cellButton: {fileID: 2100424590451421327}
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  _picture: {fileID: 7659003666493819370}
+  _backGround: {fileID: 2570582774767889765}
+  _cellButton: {fileID: 2100424590451421327}
 --- !u!1 &4571950331518274511
 GameObject:
   m_ObjectHideFlags: 0

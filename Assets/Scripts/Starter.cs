@@ -1,5 +1,6 @@
 using System;
 using AmayaSoft.TestTask.Data;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,6 +19,7 @@ namespace AmayaSoft.TestTask
         [SerializeField] private TextMeshProUGUI textTask;
         [Space]
         [SerializeField] private GameObject restartPanel;
+        [SerializeField] private Image loadPanel;
         
         private LevelLoader _levelLoader;
         private LevelStarter _levelStarter;
@@ -25,9 +27,9 @@ namespace AmayaSoft.TestTask
 
         private void Start()
         {
-            _levelStarter = new LevelStarter(cellContainer, cellPrefab, textTask, settingsData);
+            _levelStarter = new LevelStarter(cellContainer, cellPrefab, textTask, settingsData, loadPanel);
             _levelLoader = new LevelLoader(settingsData, bundlesKit);
-            _restartHandler = new RestartHandler(_levelLoader, restartPanel);
+            _restartHandler = new RestartHandler(_levelLoader, restartPanel, loadPanel);
             SetupLevel();
         }
 
@@ -36,8 +38,8 @@ namespace AmayaSoft.TestTask
             try
             {
                 var level = _levelLoader.GetNextLevel();
-                _levelStarter.StartLevel(level);
                 level.OnComplete.AddListener(SetupLevel);
+                _levelStarter.StartLevel(level);
             }
             catch (IndexOutOfRangeException e) { }
         }
