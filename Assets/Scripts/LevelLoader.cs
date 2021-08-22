@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AmayaSoft.TestTask.Data;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,13 +9,43 @@ namespace AmayaSoft.TestTask
 {
     public class LevelLoader
     {
-        private GridGenerator _gridGenerator = new GridGenerator();
-        private LevelBuilder _levelBuilder = new LevelBuilder();
+        public UnityEvent EndLevels = new UnityEvent();
         
-        public Level GetLevel(CardBundleData cards)
+        private readonly SettingsData _settings;
+        private readonly BundlesKit _kit;
+        private readonly LevelBuilder _levelBuilder = new LevelBuilder();
+
+        private int _levelCounter = 0;
+        private int row = 3;
+        private int column = 3;
+        private CardBundleData loadedCards;
+        public LevelLoader(SettingsData settings, BundlesKit kit)
         {
-            var grid = _gridGenerator.GenerateGrid(cards, 3,3);
-            return _levelBuilder.CreateLevel(grid);
+            _settings = settings;
+            _kit = kit;
+        }
+        
+        public Level GetNextLevel()
+        {
+            LoadData();
+            _levelCounter++;
+            
+            return _levelBuilder.CreateLevel(loadedCards, row, column);
+        }
+
+        private void LoadData()
+        {
+            if (_levelCounter >= _settings.Levels.Count)
+            {
+                EndLevels.Invoke();
+                throw new IndexOutOfRangeException();
+            }
+
+            var lvlData = _settings.Levels[_levelCounter];
+            row = lvlData.row;
+            column = lvlData.column;
+
+            loadedCards = lvlData.cardBundle == null ? _kit.Bundles.GetRandom() : lvlData.cardBundle;
         }
     }
 }

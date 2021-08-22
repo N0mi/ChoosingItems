@@ -10,34 +10,36 @@ namespace AmayaSoft.TestTask
     public class Starter : MonoBehaviour
     {
         [SerializeField] private BundlesKit bundlesKit;
+        [SerializeField] private SettingsData settingsData;
         [Space]
         [SerializeField] private CellView cellPrefab;
         [SerializeField] private GridLayoutGroup cellContainer;
         [Space]
         [SerializeField] private TextMeshProUGUI textTask;
+        [Space]
+        [SerializeField] private GameObject restartPanel;
         
-        private readonly LevelLoader _levelLoader = new LevelLoader();
+        private LevelLoader _levelLoader;
         private LevelStarter _levelStarter;
+        private RestartHandler _restartHandler;
 
         private void Start()
         {
-            _levelStarter = new LevelStarter(cellContainer, cellPrefab, textTask);
+            _levelStarter = new LevelStarter(cellContainer, cellPrefab, textTask, settingsData);
+            _levelLoader = new LevelLoader(settingsData, bundlesKit);
+            _restartHandler = new RestartHandler(_levelLoader, restartPanel);
             SetupLevel();
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SetupLevel();
-            }
         }
 
         private void SetupLevel()
         {
-            var level = _levelLoader.GetLevel(bundlesKit.Bundles[1]);
-            _levelStarter.StartLevel(level);
-            //level.OnComplete.AddListener(SetupLevel);
+            try
+            {
+                var level = _levelLoader.GetNextLevel();
+                _levelStarter.StartLevel(level);
+                level.OnComplete.AddListener(SetupLevel);
+            }
+            catch (IndexOutOfRangeException e) { }
         }
     }
 }

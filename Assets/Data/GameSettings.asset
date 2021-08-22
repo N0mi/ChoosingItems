@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b839fc02871c43c6aa8d6e216aad86ee, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  _colorsBackGround:
+  - {r: 0.9568628, g: 1, b: 0.77647066, a: 1}
+  - {r: 0.81568635, g: 0.94117653, b: 1, a: 1}
+  - {r: 1, g: 0.86274517, b: 0.74509805, a: 1}
+  - {r: 1, g: 0.94117653, b: 0.77647066, a: 1}
+  - {r: 1, g: 0.89019614, b: 0.95294124, a: 1}
+  - {r: 0.8470589, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.86274517, b: 0.74509805, a: 1}
+  - {r: 0.9803922, g: 0.8941177, b: 1, a: 1}
+  - {r: 0.8352942, g: 1, b: 0.9725491, a: 1}
+  _levelDatas:
+  - row: 1
+    column: 3
+    cardBundle: {fileID: 0}
+  - row: 2
+    column: 3
+    cardBundle: {fileID: 0}
+  - row: 3
+    column: 3
+    cardBundle: {fileID: 0}

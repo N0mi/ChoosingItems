@@ -5,14 +5,15 @@ namespace AmayaSoft.TestTask
 {
     public class LevelBuilder
     {
-        public Level CreateLevel(Grid grid)
+        private readonly GridGenerator _gridGenerator = new GridGenerator();
+        private readonly TaskGenerator _taskGenerator = new TaskGenerator();
+        
+        public Level CreateLevel(CardBundleData cards, int row, int column)
         {
-            return new Level(grid, GetTask(grid));
-        }
-        private CardData GetTask(Grid grid)
-        {
-            //Add check repeat card
-            return grid.Items.GetRandom();
+            var task = _taskGenerator.GetTask(cards);
+            var grid = _gridGenerator.GenerateGrid(cards, row, column, task);
+            
+            return new Level(grid, task);
         }
     }
 }
