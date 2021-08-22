@@ -1,5 +1,6 @@
 using System;
 using AmayaSoft.TestTask.Data;
+using Coffee.UIExtensions;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace AmayaSoft.TestTask
         [Space]
         [SerializeField] private GameObject restartPanel;
         [SerializeField] private Image loadPanel;
+        [SerializeField] private UIParticle _particle;
         
         private LevelLoader _levelLoader;
         private LevelStarter _levelStarter;
@@ -27,7 +29,7 @@ namespace AmayaSoft.TestTask
 
         private void Start()
         {
-            _levelStarter = new LevelStarter(cellContainer, cellPrefab, textTask, settingsData, loadPanel);
+            _levelStarter = new LevelStarter(cellContainer, cellPrefab, textTask, settingsData, loadPanel, _particle);
             _levelLoader = new LevelLoader(settingsData, bundlesKit);
             _restartHandler = new RestartHandler(_levelLoader, restartPanel, loadPanel);
             SetupLevel();

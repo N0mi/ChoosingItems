@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using AmayaSoft.TestTask.Data;
 using AmayaSoft.TestTask.View;
+using Coffee.UIExtensions;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -15,19 +16,21 @@ namespace AmayaSoft.TestTask
         private readonly TextMeshProUGUI _taskText;
         private readonly SettingsData _settings;
         private readonly Image _loadPanel;
+        private readonly UIParticle _particle;
 
         private GridView _gridView;
         private Level _currentLvl;
         private bool _isFirstShow;
 
         public LevelStarter(GridLayoutGroup cellContainer, CellView cell, TextMeshProUGUI taskText,
-            SettingsData settings, Image loadPanel)
+            SettingsData settings, Image loadPanel, UIParticle particle)
         {
             _cellContainer = cellContainer;
             _cell = cell;
             _taskText = taskText;
             _settings = settings;
             _loadPanel = loadPanel;
+            _particle = particle;
             _isFirstShow = true;
         }
         
@@ -53,7 +56,7 @@ namespace AmayaSoft.TestTask
         private void CreateGridView()
         {
             _gridView?.DestroyGrid();
-            _gridView = new GridView(_currentLvl, _cell, _cellContainer, _settings.BGColor.ToList());
+            _gridView = new GridView(_currentLvl, _cell, _cellContainer, _settings.BGColor.ToList(), _particle);
             if (_isFirstShow)
             {
                 _gridView.BounceActivateGrid();

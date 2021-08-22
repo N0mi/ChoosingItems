@@ -13,7 +13,7 @@ public class CellView : MonoBehaviour
     public UnityEvent endAnim = new UnityEvent();
 
     public CardData Card => _currentCard;
-    public Image Picture => _picture;
+    public Image BackGround => _backGround;
     private CardData _currentCard;
     
     [SerializeField] private Image _picture;
@@ -44,7 +44,7 @@ public class CellView : MonoBehaviour
 
     public void CorrectAnim()
     {
-        _picture.rectTransform.DOLocalJump(Vector3.up, 15f, 2, 0.5f).OnComplete(()=> endAnim.Invoke());
+        _picture.rectTransform.DOLocalJump(Vector3.up, 15f, 3, 1f).OnComplete(()=> endAnim.Invoke());
     }
 
     public void UncorrectAnim()

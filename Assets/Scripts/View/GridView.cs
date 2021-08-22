@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AmayaSoft.TestTask.Data;
+using Coffee.UIExtensions;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,16 +17,19 @@ namespace AmayaSoft.TestTask.View
         private readonly Grid _grid;
         private readonly CellView _cellPrefab;
         private readonly GridLayoutGroup _cellContainer;
+        private readonly UIParticle _particle;
         private readonly List<CellView> _cells = new List<CellView>();
         private readonly List<Color> _BGcolors;
         private Tweener _punch;
 
-        public GridView(Level level, CellView cell, GridLayoutGroup cellContainer, List<Color> bgColors)
+        public GridView(Level level, CellView cell, GridLayoutGroup cellContainer, List<Color> bgColors,
+            UIParticle particle)
         {
             _level = level;
             _grid = _level.Grid;
             _cellPrefab = cell;
             _cellContainer = cellContainer;
+            _particle = particle;
             _BGcolors = bgColors.ToList();
             cellContainer.constraintCount = _grid.Column;
             
@@ -49,6 +53,8 @@ namespace AmayaSoft.TestTask.View
             if (_level.CheckCorrectCard(cell.Card))
             {
                 cell.endAnim.AddListener(()=>onCorrectCardClick.Invoke(cell.Card));
+                _particle.rectTransform.position = cell.BackGround.rectTransform.position;
+                _particle.Play();
                 cell.CorrectAnim();
             }
             else

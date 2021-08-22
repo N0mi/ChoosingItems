@@ -13,7 +13,7 @@ namespace AmayaSoft.TestTask.Data
         public CardBundleData cardBundle;
     }
     
-    [CreateAssetMenu(fileName = "new Settings", menuName = "Game Settings", order = 0)]
+    [CreateAssetMenu(fileName = "New Settings", menuName = "Game Settings", order = 0)]
     public class SettingsData : ScriptableObject
     {
         [SerializeField] private Color[] _colorsBackGround;
